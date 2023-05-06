@@ -4,5 +4,3 @@ import { productDetails } from "./productDetails.mjs";
 // Get product
 const productId = getParam("product");
 productDetails(productId, ".product-detail");
-
-// console.log(findProductById(productId));

@@ -17,10 +17,6 @@ export async function productDetails(productId, selector) {
 }
 
 // function addProductToCart(item) {
-//   setLocalStorage("so-cart", item);
-// }
-
-// function addProductToCart(item) {
 //   setLocalStorage("so-cart" + localStorage.length, item);
 // }
 

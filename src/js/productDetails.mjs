@@ -11,21 +11,27 @@ export async function productDetails(productId, selector) {
   const el = document.querySelector(selector);
   el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
   // add a listener to Add to Cart button
-  document.getElementById("addToCart").addEventListener("click", addProductToCart);
+  document.getElementById("addToCart").addEventListener("click", ()=> {
+    setLocalStorage("so-cart" + localStorage.length, product);
+  });
 }
 
-function addProductToCart(product) {
-  setLocalStorage("so-cart", product);
-}
+// function addProductToCart(item) {
+//   setLocalStorage("so-cart", item);
+// }
 
-function productDetailsTemplate(product){
-  return `<h3 id="productName">${product.Name}</h3>
-  <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
-  <img id="productImage" class="divider" src="${product.Image}" alt="${product.Name}" />
-  <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
-  <p class="product__color" id="productColorName">${product.Colors.ColorName}</p>
-  <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
+// function addProductToCart(item) {
+//   setLocalStorage("so-cart" + localStorage.length, item);
+// }
+
+function productDetailsTemplate(item){
+  return `<h3 id="productName">${item.Name}</h3>
+  <h2 class="divider" id="productNameWithoutBrand">${item.NameWithoutBrand}</h2>
+  <img id="productImage" class="divider" src="${item.Image}" alt="${item.Name}" />
+  <p class="product-card__price" id="productFinalPrice">${item.FinalPrice}</p>
+  <p class="product__color" id="productColorName">${item.Colors.ColorName}</p>
+  <p class="product__description" id="productDescriptionHtmlSimple">${item.DescriptionHtmlSimple}</p>
   <div class="product-detail__add">
-    <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
+    <button id="addToCart" data-id="${item.Id}">Add to Cart</button>
   </div>`;
 }

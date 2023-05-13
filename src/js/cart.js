@@ -1,5 +1,7 @@
 import { getLocalStorage } from "./utils.mjs";
 
+// let total;
+
 function renderCartContents() {
   const cartItems = [];
   for (var i = 0; i < localStorage.length; i++) {
@@ -7,6 +9,14 @@ function renderCartContents() {
   }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // create a total variable
+  let total = 0;
+  // add total cost of all cart items and set to div element in cart index
+  const addCartTotal = cartItems.map((product) => total += product.FinalPrice); //addTotal(item)
+  // addCartTotal = total;
+  console.log(addCartTotal);
+  document.querySelector(".cart-footer").innerHTML = cartTotalElement(total);
 }
 
 function cartItemTemplate(item) {
@@ -26,6 +36,25 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+// function addTotal(items) {
+//   total += items.FinalPrice;
+
+//   return total;
+
+  // if (items.length == 1) {
+  //   total = items.FinalPrice;
+  // }
+  // else {
+  //   total += items.FinalPrice;
+  // }
+// }
+
+function cartTotalElement(total) {
+  const totalElement = `<p class="cart-total">Total: $${total}</p>`;
+
+  return totalElement
 }
 
 renderCartContents();

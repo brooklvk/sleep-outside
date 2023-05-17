@@ -1,4 +1,4 @@
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
 let product = {};
@@ -12,13 +12,18 @@ export async function productDetails(productId, selector) {
   el.insertAdjacentHTML("afterBegin", productDetailsTemplate(product));
   // add a listener to Add to Cart button
   document.getElementById("addToCart").addEventListener("click", ()=> {
-    setLocalStorage("so-cart" + localStorage.length, product);
+    addProductToCart(product);
   });
 }
 
-// function addProductToCart(item) {
-//   setLocalStorage("so-cart" + localStorage.length, item);
-// }
+function addProductToCart(item) {
+  let items = getLocalStorage("so-cart");
+  if (items == null) {
+    items = [];
+  } 
+  items.push(item);
+  setLocalStorage("so-cart", items);
+}
 
 function productDetailsTemplate(item){
   return `<h3 id="productName">${item.Name}</h3>

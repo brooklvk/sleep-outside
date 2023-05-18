@@ -2,11 +2,16 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
-  // for (var i = 0; i < localStorage.length; i++) {
-  //   cartItems.push(getLocalStorage("so-cart" + i));
-  // }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // create a total variable
+  let total = 0;
+  if (htmlItems != 0) {
+    // add total cost of all cart items and set to div element in cart index
+    const addCartTotal = cartItems.map((product) => total += product.FinalPrice);
+    document.querySelector(".cart-footer").innerHTML = cartTotalElement(total);
+  } 
   
   // Add event listeners to all of the X buttons.
   const xButtons = document.querySelectorAll(".removeBtn")
@@ -45,6 +50,12 @@ function cartItemTemplate(item) {
   <span id="${item.Id}" class="removeBtn">&#10005;</span>
 </li>`;
   return newItem;
+}
+
+function cartTotalElement(total) {
+  const totalElement = `<p class="cart-total">Total: $${total}</p>`;
+
+  return totalElement
 }
 
 renderCartContents();

@@ -2,7 +2,7 @@
     export let product = {};
 </script>
 
-<a href="product_pages/index.html?product=880RR">
+<a href="product_pages/index.html?product={product.Id}">
     <img
     src="{product.Image}"
     alt="{product.Name}"

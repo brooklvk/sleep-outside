@@ -104,10 +104,22 @@ button {
 }
 
 .cart svg {
-  width: 25px;
+  width: 35px;
 }
 .cart:hover svg {
   fill: gray;
+}
+
+circle {
+  fill: var(--primary-color);
+}
+
+sup {
+  position: absolute;
+  top: 21px;
+  right: 11px;
+  color: black;
+  font-size: .6em;
 }
 
 /* End cart icon styles */

@@ -1,3 +1,7 @@
+import MainHeader from "./components/MainHeader.svelte";
+import MainFooter from "./components/MainFooter.svelte";
+import { cartCount } from "./stores.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -26,4 +30,21 @@ export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get(param);;
+}
+
+export function renderHeaderFooter() {
+  new MainHeader({
+    target: document.querySelector("#main-header"),
+  });
+  new MainFooter({
+    target: document.querySelector("#main-footer")
+  });
+}
+
+export function getCartCount() {
+  const cartItems = getLocalStorage("so-cart");
+  if (cartItems.length != null) {
+    let arrayCount = cartItems.length;
+    return arrayCount;
+  }
 }

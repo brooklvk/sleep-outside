@@ -1,6 +1,6 @@
 import MainHeader from "./components/MainHeader.svelte";
 import MainFooter from "./components/MainFooter.svelte";
-import { cartCount } from "./stores.mjs";
+// import { cartCount } from "./stores.mjs"; //This function doesn't get used in this file. 
 
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {

@@ -62,3 +62,6 @@ function cartTotalElement(total) {
 renderCartContents();
 renderHeaderFooter();
 
+
+//Cart read the list of items out of localStorage and then built the HTML to display them. 
+//We should create a ShoppingCart.svelte component similar to what we did for ProductList.

@@ -61,4 +61,3 @@ function cartTotalElement(total) {
 
 renderCartContents();
 renderHeaderFooter();
-

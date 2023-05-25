@@ -30,7 +30,7 @@ function addProductToCart(item) {
 function productDetailsTemplate(item){
   return `<h3 id="productName">${item.Name}</h3>
   <h2 class="divider" id="productNameWithoutBrand">${item.NameWithoutBrand}</h2>
-  <img id="productImage" class="divider" src="${item.Image}" alt="${item.Name}" />
+  <img id="productImage" class="divider" src="${item.Images.PrimaryExtraLarge}" alt="${item.Name}" />
   <p class="product-card__price" id="productFinalPrice">${item.FinalPrice}</p>
   <p class="product__color" id="productColorName">${item.Colors.ColorName}</p>
   <p class="product__description" id="productDescriptionHtmlSimple">${item.DescriptionHtmlSimple}</p>

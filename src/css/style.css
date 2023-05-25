@@ -131,6 +131,25 @@ sup {
   max-width: 600px;
   margin: auto;
 }
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+.categories a {
+  width: 150px;
+  margin: 20px;
+  text-decoration: none;
+  color: black;
+}
+.categories img {
+  width: 150px;
+}
+
+
+
 .products {
   padding: 0.5em;
 }

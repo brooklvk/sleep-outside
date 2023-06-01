@@ -1,11 +1,11 @@
 <script>
     import ProductSummary from "./ProductSummary.svelte";
     import { getData } from "../productData.mjs";
-        
     // this is how we make a prop in svelte
     export let category;
     // if you are looking at this thinking that's strange to just stop with a promise
     // you would be right.  This will make more sense in a bit...stay tuned.
+    console.log(category)
     let promise = getData(category);
 </script>
 

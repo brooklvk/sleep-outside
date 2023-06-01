@@ -12,6 +12,7 @@ function renderCartContents() {
     // add total cost of all cart items and set to div element in cart index
     const addCartTotal = cartItems.map((product) => total += product.FinalPrice);
     document.querySelector(".cart-footer").innerHTML = cartTotalElement(total);
+    document.querySelector(".cart-footer").insertAdjacentHTML("beforeend", checkoutButton())
   } 
   
   // Add event listeners to all of the X buttons.
@@ -57,6 +58,12 @@ function cartTotalElement(total) {
   const totalElement = `<p class="cart-total">Total: $${total}</p>`;
 
   return totalElement
+}
+
+function checkoutButton()
+{
+  const button = `<a href="../checkout/index.html"><button id="checkoutButton">Checkout</button></a>`;
+  return button;
 }
 
 renderCartContents();

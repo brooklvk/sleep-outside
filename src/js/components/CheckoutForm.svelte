@@ -1,6 +1,70 @@
 <script>
-    let tax = 0;
+  import { getLocalStorage } from "../utils.mjs";
+  import { checkout } from "../externalServices.mjs";
+  // props
+  export let key = "";
+
+  // state vars
+  let list = [];
+  let itemTotal = 0;
+  let shipping = 0;
+  let tax = 0;
+  let orderTotal = 0;
+
+  // initial setup
+  const init = function () {
+    list = getLocalStorage(key);
+    calculateItemSummary();
+  };
+
+  // calculate order subtotal from the cart items
+  const calculateItemSummary = function () {
+    const amounts = list.map((item) => item.FinalPrice);
+    itemTotal = amounts.reduce((sum, item) => sum + item);
+  };
+
+  // calculate the shipping, tax, and orderTotal
+  const calculateOrdertotal = function () {
+    tax = (itemTotal * .06).toFixed(2);
+    shipping = 10 + (2 * (list.length() - 1))
+    orderTotal = (itemTotal + tax + shipping).toFixed(2);
+  };
+
+  function packageItems(items) {
+    const packedItems = items.map((product) => {
+      return {
+        id: product.Id,
+        price: product.FinalPrice,
+        name: product.Name,
+        quantity: 1,
+      };
+    });
+    return packedItems;
+  }
+
+  // Replace the default action taken by the browser.
+  const handleSubmit = async function (e) {
+    const json = formDataToJSON(e.target);
+    // add totals, and item details
+    json.orderDate = new Date();
+    json.orderTotal = orderTotal;
+    json.tax = tax;
+    json.shipping = shipping;
+    json.items = packageItems(list);
+    //console.log(json);
+    try {
+      const res = await checkout(json);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // initial setup
+  init();
 </script>
+
+<!-- <h1>Jonas</h1> -->
 
 <form name="checkout" on:submit|preventDefault={handleSubmit}>
     <fieldset>
@@ -61,3 +125,30 @@
 
     <button id="checkoutSubmit" type="submit">Checkout</button>
 </form>
+
+<style>
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  * + fieldset {
+    margin-top: 1em;
+  }
+  label {
+    display: block;
+  }
+  input {
+    width: 100%;
+    font-size: 1.2em;
+  }
+
+  .checkout-summary > ul {
+    padding-left: 0;
+    list-style-type: none;
+  }
+  .checkout-summary li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+</style>

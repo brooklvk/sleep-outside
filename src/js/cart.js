@@ -10,7 +10,8 @@ function renderCartContents() {
   let total = 0;
   if (htmlItems != 0) {
     // add total cost of all cart items and set to div element in cart index
-    const addCartTotal = cartItems.map((product) => total += product.FinalPrice);
+    cartItems.map((product) => total += product.FinalPrice);
+    console.log(total)
     document.querySelector(".cart-footer").innerHTML = cartTotalElement(total);
     document.querySelector(".cart-footer").insertAdjacentHTML("beforeend", checkoutButton())
   } 
@@ -56,7 +57,6 @@ function cartItemTemplate(item) {
 
 function cartTotalElement(total) {
   const totalElement = `<p class="cart-total">Total: $${total}</p>`;
-
   return totalElement
 }
 

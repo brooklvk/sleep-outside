@@ -8,7 +8,7 @@ function convertToJson(res) {
   }
 }
 
-export async function getData(category) {
+export async function getProductsByCategory(category) {
   console.log(category)
   //const response = await fetch(baseURL + `products/search/${category}`);
   const response = await fetch(baseURL + `products/search/tents`);
@@ -17,6 +17,17 @@ export async function getData(category) {
 }
 
 export async function findProductById(id) {
-  const products = await getData();
+  const products = await getProductsByCategory();
   return products.find((item) => item.Id === id);
+}
+
+export async function checkout(payload) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  };
+  return await fetch(baseURL + "checkout/", options).then(convertToJson);
 }

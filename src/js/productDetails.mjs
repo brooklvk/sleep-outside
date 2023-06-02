@@ -1,17 +1,17 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { cartCount } from "./stores.mjs";
 
 let product = {};
 
-export async function productDetails(productId, selector) {
+export async function productDetails(productId, selector) { 
+  // Fix product not found error
+  console.log(item)
+  if (item == undefined)
+  {  
+    return;
+  }
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
-  
-  // console.log(item)
-  // if (item == undefined)
-  // {  
-  //   return;
-  // }
   product = await findProductById(productId);
   // once we have the product details we can render out the HTML
   const el = document.querySelector(selector);

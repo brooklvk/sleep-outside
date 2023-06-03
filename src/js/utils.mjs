@@ -42,11 +42,8 @@ export function renderHeaderFooter() {
 }
 
 export function getCartCount() {
-  const cartItems = getLocalStorage("so-cart");
-  if (cartItems.length != null) {
-    let arrayCount = cartItems.length;
-    return arrayCount;
-  }
+  const cartItems = getLocalStorage("so-cart")?.length ?? 0;
+  return cartItems;
 }
 
 // takes a form element and returns an object where the key is the "name" of the form input.

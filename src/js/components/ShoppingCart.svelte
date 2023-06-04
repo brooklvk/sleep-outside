@@ -2,6 +2,7 @@
     import { getLocalStorage } from "../utils.mjs";
     const cartItems = getLocalStorage("so-cart") || [];
     let total = calculateListTotal(cartItems);
+    
   
     function calculateListTotal(list) {
       const amounts = list.map((item) => item.FinalPrice);
@@ -24,7 +25,7 @@
             <h2 class="card__name">{item.Name}</h2>
           </a>
           <p class="cart-card__color">{item.Colors[0].ColorName}</p>
-          <p class="cart-card__quantity">qty: 1</p>
+          <p class="cart-card__quantity">qty: </p><input type="number" value="1" min="1">
           <p class="cart-card__price">${item.FinalPrice}</p>
         </li>
       {/each}

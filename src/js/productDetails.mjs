@@ -3,14 +3,14 @@ import { findProductById } from "./externalServices.mjs";
 import { cartCount } from "./stores.mjs";
 
 let product = {};
-
 export async function productDetails(productId, selector) { 
   // Fix product not found error
-  console.log(item)
-  if (item == undefined)
-  {  
-    return;
-  }
+  // console.log(product);
+  // if (product == undefined)
+  // {  
+  //   return;
+  // }
+  console.log(findProductById(productId));
   // use findProductById to get the details for the current product. findProductById will return a promise! use await or .then() to process it
   product = await findProductById(productId);
   // once we have the product details we can render out the HTML
@@ -19,27 +19,35 @@ export async function productDetails(productId, selector) {
   // add a listener to Add to Cart button
   document.getElementById("addToCart").addEventListener("click", ()=> {
     addProductToCart(product);
+    cartAnimation()
   });
 }
 
-function addProductToCart(item) {
-  let items = getLocalStorage("so-cart");
-  if (items == null) {
-    items = [];
+function cartAnimation() {
+  document.querySelector(".cart").style.animation = "shake 0.4s 5"
+  setTimeout(function(){
+    document.querySelector(".cart").style.animation = ""
+  }, 600)
+}
+
+function addProductToCart(product) {
+  let products = getLocalStorage("so-cart");
+  if (products == null) {
+    products = [];
   } 
-  items.push(item);
-  setLocalStorage("so-cart", items);
+  products.push(product);
+  setLocalStorage("so-cart", products);
   cartCount.set();
 }
 
-function productDetailsTemplate(item){
-  return `<h3 id="productName">${item.Name}</h3>
-  <h2 class="divider" id="productNameWithoutBrand">${item.NameWithoutBrand}</h2>
-  <img id="productImage" class="divider" src="${item.Images.PrimaryExtraLarge}" alt="${item.Name}" />
-  <p class="product-card__price" id="productFinalPrice">${item.FinalPrice}</p>
-  <p class="product__color" id="productColorName">${item.Colors.ColorName}</p>
-  <p class="product__description" id="productDescriptionHtmlSimple">${item.DescriptionHtmlSimple}</p>
+function productDetailsTemplate(product){
+  return `<h3 id="productName">${product.Brand.Name}</h3>
+  <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
+  <img id="productImage" class="divider" src="${product.Images.PrimaryExtraLarge}" alt="${product.Name}" />
+  <p class="product-card__price" id="productFinalPrice">${product.FinalPrice}</p>
+  <p class="product__color" id="productColorName">${product.Colors.ColorName}</p>
+  <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
   <div class="product-detail__add">
-    <button id="addToCart" data-id="${item.Id}">Add to Cart</button>
+    <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
   </div>`;
 }

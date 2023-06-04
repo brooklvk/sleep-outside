@@ -122,6 +122,13 @@ sup {
   font-size: .6em;
 }
 
+@keyframes shake {
+  0%{ transform: translate(0px, 0px); }
+  25%{ transform: translate(4px, 0px); }
+  50%{ transform: translate(-4px, 0px); }
+  75%{ transform: translate(8px, 0px); }
+  100%{ transform: translate(-4px, 0px); }
+}
 /* End cart icon styles */
 
 .mission {

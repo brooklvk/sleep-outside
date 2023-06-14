@@ -1,11 +1,26 @@
 <script>
     import { cartCount } from "../stores.mjs";
+
+    let searchInput="";
+
+    async function getProducts(){    
+      // const products = await fetch("http://server-nodejs.cit.byui.edu:3000/products/search/tents`");
+      console.log(searchInput);
+      // return products;
+    }
 </script>
 
 <div class="logo">
   <img src="/images/noun_Tent_2517.svg" alt="tent for logo" />
   <a href="../../index.html"> Sleep<span class="highlight">Outside</span></a>
 </div>
+
+<form id="searchForm" action="../../product-list/index.html" on:submit={getProducts}>
+  <label for="search">Search Products:</label>
+  <input type="text" name="search" id="searchBox" bind:value={searchInput}>
+  <button type="submit" id="submitButton">Search</button>
+</form>
+
 <div class="cart">
   <a href="../../cart/index.html">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
@@ -27,6 +42,7 @@
       <path
         d="M60.1 71.4v3.3h-5.2v-3.4c-1.7-0.3-3.3-0.7-4.6-1 -0.9 6.8-1.1 13.3-0.3 14.5 0.4 0.3 2.9 1.1 8 1.1h0c5 0 8.8-0.7 9.7-1.3 0.8-1.3 0.6-7.7-0.4-14.4C65.5 70.5 62.7 71.1 60.1 71.4z"
       />
+      
       {#if $cartCount != 0}
         <circle cx="60" cy="25" r="25" fill=""/>
       {/if}
@@ -38,3 +54,33 @@
     {/if}
   </a>
 </div>
+
+
+<style>
+  form{
+    margin: 0 auto;
+    display: flex;
+  }
+  
+  form label{
+    margin-top: 18px;
+    margin-right: 5px;
+  }
+
+  #searchBox{
+    margin-top: 15px;
+    margin-right: 10px;
+    max-width: 200px;
+    max-height: 30px; 
+  }
+
+  #submitButton{
+    background-color: white;
+    font-size: .9em;
+    color: black;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+  
+</style>

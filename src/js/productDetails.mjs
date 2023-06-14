@@ -10,7 +10,7 @@ export async function productDetails(productId, selector) {
   if (product == undefined) //check if it is able to find the item.
   {  
     const errorMessage = document.querySelector(selector);
-    errorMessage.insertAdjacentHTML("afterBegin", "<h2>Sorry we could not find that item!</h2>");
+    errorMessage.insertAdjacentHTML("afterBegin", "<h2>Sorry we could not find any items!</h2>");
     return;
   }
   const el = document.querySelector(selector);

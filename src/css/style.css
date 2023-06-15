@@ -155,7 +155,17 @@ sup {
   width: 150px;
 }
 
-
+/* Sort By div on Product List page */
+.sort {
+  display: flex;
+}
+.sort p {
+  padding: 10px;
+}
+.sort-by {
+  margin: 20px;
+  padding: 10px;
+}
 
 .products {
   padding: 0.5em;

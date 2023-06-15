@@ -57,3 +57,17 @@ export function formDataToJSON(formElement) {
   
   return convertedJSON;
 }
+
+export function alertMessage(message, scroll = true){
+  const alert = new AlertMessage({
+    target: document.querySelector("body"),
+    anchor: document.querySelector("main"),
+    props: {
+    message,
+    },
+  });
+  if (scroll) window.scrollTo(0, 0);
+  setTimeout(function () {
+    alert.$destroy();
+  }, 10000);
+}

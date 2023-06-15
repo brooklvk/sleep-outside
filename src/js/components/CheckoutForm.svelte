@@ -1,6 +1,8 @@
 <script>
   import { getLocalStorage } from "../utils.mjs";
   import { checkout } from "../externalServices.mjs";
+  import { formDataToJSON } from "../utils.mjs";
+  import { alertMessage } from "../utils.mjs";
   // props
   export let key = "";
 
@@ -26,8 +28,8 @@
   // calculate the shipping, tax, and orderTotal
   const calculateOrdertotal = function () {
     tax = (itemTotal * .06).toFixed(2);
-    shipping = 10 + (2 * (list.length() - 1))
-    orderTotal = (itemTotal + tax + shipping).toFixed(2);
+    shipping = 10 + (2 * (list.length - 1));
+    orderTotal = (parseFloat(itemTotal) + parseFloat(tax) + parseFloat(shipping)).toFixed(2);
   };
 
   function packageItems(items) {
@@ -51,11 +53,16 @@
     json.tax = tax;
     json.shipping = shipping;
     json.items = packageItems(list);
-    //console.log(json);
+    console.log(json);
     try {
       const res = await checkout(json);
       console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
     } catch (err) {
+      for (let message in err.message){
+        alertMessage(`Invalid ${err}`, scroll=true);
+      }
       console.log(err);
     }
   };
@@ -97,7 +104,7 @@
         minlength="16"
       />
       <label for="expiration">Expiration</label>
-      <input name="expiration" required placeholder="mm/yy" />
+      <input name="expiration" required placeholder="mm/yy" pattern="(0[0-1]1[0-9]/2[2-3]3[0-9])"/>
       <label for="code">Security Code</label>
       <input name="code" required placeholder="xxx" maxlength="3" minlength="3" />
     </fieldset>

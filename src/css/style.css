@@ -176,6 +176,7 @@ sup {
   justify-content: space-between;
   list-style-type: none;
   padding: 0;
+  color: white;
 }
 .product-list a {
   text-decoration: none;

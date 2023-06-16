@@ -8,7 +8,7 @@
     console.log(category)
     let promise = getProductsByCategory(category);
 
-    let selected = "by-name";
+    let selected;
 </script>
 
 <h2>Top Products: {category}</h2>
@@ -24,24 +24,20 @@
 Loading...
 {:then products}
 
-<script>
-    if (selected = "by-name") {
-        products.sort((a, b) => (a.Brand.Name > b.Brand.Name) ? -1 : 1);
-        products.forEach(product => {
-            product = `<li class="product-card"><${ProductSummary {product}}/></li>`
-            document.querySelector(".product-list").appendChild(product)
-        });
-    }
-    else if (selected = "by-price") {
-        products.sort((a, b) => (a.FinalPrice > b.FinalPrice) ? -1 : 1);
-        products.forEach(product => {
-            product = `<li class="product-card"><${ProductSummary {product}}/></li>`
-            document.querySelector(".product-list").appendChild(product)
-        });
-    }
-
-</script>
-
 <ul class="product-list">
+
+{#if selected = "by-name"} 
+    {products.sort((a, b) => (a.Brand.Name > b.Brand.Name) ? 1 : -1)}
+    {#each products as product}
+        <li class="product-card"><ProductSummary {product}/></li>
+    {/each}
+
+{:else if selected = "by-price"} 
+    {products.sort((a, b) => (a.FinalPrice > b.FinalPrice) ? -1 : 1)}
+    {#each products as product}
+        <li class="product-card"><ProductSummary {product}/></li>
+    {/each}
+{/if}
+
 </ul>
 {/await}

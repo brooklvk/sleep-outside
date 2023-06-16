@@ -12,7 +12,7 @@ export async function login(creds, redirect = "/") {
         // if no redirect is provided send them Home.
         window.location = redirect;
     } catch (err) {
-        alertMessage(err.message.message);
+        alertMessage(err.message);
     }
 }
 

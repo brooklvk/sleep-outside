@@ -201,6 +201,16 @@ sup {
 .card__name {
   font-size: 1em;
 }
+
+/* Discount */
+.suggested-price {
+  color: rgb(220, 0, 0);
+  text-decoration: line-through;
+}
+.percent-off {
+  font-size: 0.8em;
+}
+
 /* End product list card */
 
 .product-detail {

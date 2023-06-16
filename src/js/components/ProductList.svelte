@@ -15,7 +15,7 @@
 <div class="sort">
 <p>Sort By: </p>
 <select bind:value="{selected}" class="sort-by" name="sort-by">
-    <option value="by-name">Name (A-Z)</option>
+    <option value="by-name" selected>Name (A-Z)</option>
     <option value="by-price">Price (High-Low)</option>
 </select>
 </div>

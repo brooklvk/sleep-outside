@@ -49,7 +49,7 @@ export async function loginRequest(creds) {
   return response.accessToken;
 }
 
-export async function getOrders() {
+export async function getOrders(token) {
   const options = {
     method: "GET",
     headers: {

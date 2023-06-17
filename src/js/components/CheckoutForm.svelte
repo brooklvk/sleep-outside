@@ -105,7 +105,8 @@
       minlength="16"
     />
     <label for="expiration">Expiration</label>
-    <input name="expiration" id="expiration" required placeholder="mm/yy" pattern="(0[0-1]1[0-9]/2[2-3]3[0-9])" />
+    <input name="expiration" id="expiration" required placeholder="mm/yy"  />
+    <!-- pattern="(0[0-1]1[0-9]/2[2-3]3[0-9])" -->
     <label for="code">Security Code</label>
     <input name="code" id="code" required placeholder="xxx" maxlength="3" minlength="3" />
   </fieldset>

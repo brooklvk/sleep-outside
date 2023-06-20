@@ -24,7 +24,7 @@
           <a href="../product_pages/index.html?product={item.Id}">
             <h2 class="card__name">{item.Name}</h2>
           </a>
-          <p class="cart-card__color">{item.Colors[0].ColorName}</p>
+          <!-- <p class="cart-card__color">{item.Colors[0].ColorName}</p> -->
           <p class="cart-card__quantity">qty: </p><input type="number" value="1" min="1">
           <p class="cart-card__price">${item.FinalPrice}</p>
         </li>
@@ -32,7 +32,7 @@
     </ul>
     <div class="list-footer">
       <a href="/checkout/">Checkout</a>
-      <p class="list-total">Total: ${total}</p>
+      <p class="list-total">Total: ${total.toFixed(2)}</p>
     </div>
   {:else}
     <h2>Cart Currently Empty</h2>

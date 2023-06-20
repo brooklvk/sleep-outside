@@ -8,16 +8,16 @@
     console.log(category)
     let promise = getProductsByCategory(category);
 
-    let selected;
+    // let selected;
 </script>
 
 <h2>Top Products: {category}</h2>
 <div class="sort">
-<p>Sort By: </p>
+<!-- <p>Sort By: </p>
 <select bind:value="{selected}" class="sort-by" name="sort-by">
     <option value="by-name" selected>Name (A-Z)</option>
     <option value="by-price">Price (High-Low)</option>
-</select>
+</select> -->
 </div>
 
 {#await promise}
@@ -26,18 +26,10 @@ Loading...
 
 <ul class="product-list">
 
-{#if selected = "by-name"} 
-    {products.sort((a, b) => (a.Brand.Name > b.Brand.Name) ? 1 : -1)}
-    {#each products as product}
-        <li class="product-card"><ProductSummary {product}/></li>
-    {/each}
-
-{:else if selected = "by-price"} 
-    {products.sort((a, b) => (a.FinalPrice > b.FinalPrice) ? -1 : 1)}
-    {#each products as product}
-        <li class="product-card"><ProductSummary {product}/></li>
-    {/each}
-{/if}
+{products.sort((a, b) => (a.Brand.Name > b.Brand.Name) ? 1 : -1)}
+{#each products as product}
+    <li class="product-card"><ProductSummary {product}/></li>
+{/each}
 
 </ul>
 {/await}

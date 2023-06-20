@@ -28,7 +28,9 @@ img {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 10px;
+  height: 75px;
 }
 .logo {
   line-height: 60px;
@@ -110,27 +112,31 @@ button {
 /* Cart icon styles */
 .cart {
   padding-top: 1em;
-  position: relative;
   text-align: center;
+  position: relative;
+  top: 30px;
+  animation: shake 1s;
 }
 
-.cart svg {
+#backpack {
   width: 35px;
 }
-.cart:hover svg {
+
+#backpack:hover {
   fill: gray;
 }
 
-circle {
+#circle {
   fill: var(--primary-color);
+  position: relative;
+  top: -45px;
 }
 
-sup {
-  position: absolute;
-  top: 21px;
-  right: 11px;
+small {
   color: black;
-  font-size: .6em;
+  position: relative;
+  top: -101px;
+  right: -5px;
 }
 
 @keyframes shake {

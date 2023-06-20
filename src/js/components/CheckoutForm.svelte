@@ -74,40 +74,42 @@
 <!-- <h1>Jonas</h1> -->
 
 <form name="checkout" on:submit|preventDefault={handleSubmit}>
-    <fieldset>
-      <legend>Shipping</legend>
-      <div class="checkout__name">
-        <label for="fname">First Name</label>
-        <input name="fname" required />
-        <label for="lname">Last Name</label>
-        <input name="lname" required />
-      </div>
-      <div class="checkout__address">
-        <label for="street">Street</label>
-        <input name="street" required />
-        <label for="city">City</label>
-        <input name="city" required />
-        <label for="state">State</label>
-        <input name="state" required />
-        <label for="zip">Zip</label>
-        <input name="zip" id="zip" required on:blur={calculateOrdertotal} />
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend>Payment</legend>
-      <label for="cardNumber">Card number</label>
-      <input
-        name="cardNumber"
-        required
-        placeholder="No spaces or dashes!"
-        maxlength="16"
-        minlength="16"
-      />
-      <label for="expiration">Expiration</label>
-      <input name="expiration" required placeholder="mm/yy" pattern="(0[0-1]1[0-9]/2[2-3]3[0-9])"/>
-      <label for="code">Security Code</label>
-      <input name="code" required placeholder="xxx" maxlength="3" minlength="3" />
-    </fieldset>
+  <fieldset>
+    <legend>Shipping</legend>
+    <div class="checkout__name">
+      <label for="fname">First Name</label>
+      <input name="fname" id="fname" required />
+      <label for="lname">Last Name</label>
+      <input name="lname" id="lname" required />
+    </div>
+    <div class="checkout__address">
+      <label for="street">Street</label>
+      <input name="street" id="street" required />
+      <label for="city">City</label>
+      <input name="city" id="city" required />
+      <label for="state">State</label>
+      <input name="state" id="state" required />
+      <label for="zip">Zip</label>
+      <input name="zip" id="zip" required on:blur={calculateOrdertotal} />
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Payment</legend>
+    <label for="cardNumber">Card number</label>
+    <input
+      name="cardNumber"
+      id="cardNumber"
+      required
+      placeholder="No spaces or dashes!"
+      maxlength="16"
+      minlength="16"
+    />
+    <label for="expiration">Expiration</label>
+    <input name="expiration" id="expiration" required placeholder="mm/yy"  />
+    <!-- pattern="(0[0-1]1[0-9]/2[2-3]3[0-9])" -->
+    <label for="code">Security Code</label>
+    <input name="code" id="code" required placeholder="xxx" maxlength="3" minlength="3" />
+  </fieldset>
     <fieldset class="checkout-summary">
       <legend>Order Summary</legend>
       <ul>

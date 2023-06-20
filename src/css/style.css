@@ -76,6 +76,17 @@ header {
 .logo--square > div {
   margin-top: -1.7em;
 }
+
+.login-link {
+  display: flex;
+  align-items: center;
+}
+.login-link a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.25rem;
+}
+
 /* utility classes */
 .highlight {
   color: var(--tertiary-color);
@@ -155,6 +166,18 @@ sup {
   width: 150px;
 }
 
+/* Sort By div on Product List page */
+.sort {
+  display: flex;
+}
+.sort p {
+  padding: 10px;
+}
+.sort-by {
+  margin: 20px;
+  padding: 10px;
+}
+
 .products {
   padding: 0.5em;
 }
@@ -164,6 +187,7 @@ sup {
   justify-content: space-between;
   list-style-type: none;
   padding: 0;
+  color: white;
 }
 .product-list a {
   text-decoration: none;

@@ -1,8 +1,8 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
-function convertToJson(res) {
+export async function convertToJson(res) {
   let jsonResponse = res.json(); 
-  if (jsonResponse.ok) {
+  if (res.ok) {
     return jsonResponse;
   } else {
     throw { name: 'servicesError', message: jsonResponse };
@@ -10,9 +10,10 @@ function convertToJson(res) {
 }
 
 export async function getProductsByCategory(category) {
-  console.log(category)
+  console.log(category);
   const response = await fetch(baseURL + `products/search/${category}`);
   const data = await convertToJson(response);
+  console.log(data.Result);
   return data.Result;
 }
 
@@ -34,4 +35,27 @@ export async function checkout(payload) {
     body: JSON.stringify(payload),
   };
   return await fetch(baseURL + "checkout/", options).then(convertToJson);
+}
+
+export async function loginRequest(creds) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  };
+  const response = await fetch(baseURL + "login", options).then(convertToJson);
+  return response.accessToken;
+}
+
+export async function getOrders(token) {
+  const options = {
+    method: "GET",
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  };
+  const response = await fetch(baseURL + "orders", options).then(convertToJson);
+  return response;
 }
